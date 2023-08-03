@@ -190,9 +190,10 @@ class ConcertController extends Controller
 
     public function getTickets(Request $request) {
         $validated = $request->validate([
-            'code' => '',
-            'name' => '',
+            'code' => 'required',
+            'name' => 'required',
         ]);
+
 
         $ticket = Ticket::where('code', $validated['code'])->first();
         if(!isset($ticket) || $ticket->booking->name != $validated['name']) {
